@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.555618" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+    <PackageReference Include="Unity" Version="5.11.1" />
+    <PackageReference Include="Unity.ServiceLocation" Version="5.11.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modules\" />
+    <Folder Include="Core\" />
+    <Folder Include="Services\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Core\ApiManager\" />
+    <Folder Include="Modules\Weather\" />
+    <Folder Include="Core\Base\" />
+    <Folder Include="Models\" />
+    <Folder Include="Core\DependecyInjection\" />
+    <Folder Include="Core\DependecyInjection\Interfaces\" />
+    <Folder Include="Core\DependecyInjection\Implementations\" />
+    <Folder Include="Models\Enum\" />
+    <Folder Include="Core\Navigation\" />
+    <Folder Include="Core\Navigation\Interface\" />
+    <Folder Include="Core\Navigation\Implamentation\" />
+    <Folder Include="Core\Interactions\" />
+    <Folder Include="Core\Interactions\Behaviors\" />
+    <Folder Include="Models\Models\" />
+    <Folder Include="Models\Constants\" />
+    <Folder Include="Repositories\WeatherRepository\" />
+    <Folder Include="Models\Models\Base\" />
+    <Folder Include="Models\Models\Weather\" />
+    <Folder Include="Core\Base\VIews\" />
+    <Folder Include="Core\Base\ViewModels\" />
+    <Folder Include="Core\Interactions\Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Core\Base\VIews\BasePages.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Core\Base\VIews\BasePages.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Core\Base\VIews\BasePage.xaml.cs">
+      <DependentUpon>BasePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Modules\Weather\WeatherPage.xaml.cs">
+      <DependentUpon>WeatherPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

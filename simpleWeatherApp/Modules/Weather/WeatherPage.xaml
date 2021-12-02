@@ -1,0 +1,76 @@
+﻿<base:BasePage
+    xmlns:base="clr-namespace:simpleWeatherApp.Core.Base.VIews"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="simpleWeatherApp.Modules.Weather.WeatherPage"
+    xmlns:converters="clr-namespace:simpleWeatherApp.Core.Interactions.Converters">
+    <base:BasePage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+            <Style x:Key="DetailsLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="TextColor" Value="#e6faff" />
+            </Style>
+
+            <converters:DegreesToDirectionConverter x:Key="DegreesToDirectionConverter"/>
+
+            <Color x:Key="MainControlColor">#0084ff</Color>
+            <Color x:Key="MainPageColor">#99ceff</Color>
+        </ResourceDictionary>
+    </base:BasePage.Resources>
+        <StackLayout BackgroundColor="{StaticResource MainPageColor}"
+                     Padding="20">
+
+            <Label Text="{Binding Location, StringFormat='Weather in {0}'}"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   FontSize="32"/>
+
+            <StackLayout HorizontalOptions="Center"
+                         Orientation="Horizontal">
+
+              <Image Source="{Binding WeatherIcon}"
+                     HeightRequest="48"
+                     WidthRequest="48"/>
+                
+              <Label Text="{Binding Temperature, StringFormat=' {0} °С'}"
+                     FontSize="40"/>
+            </StackLayout>
+
+            <Frame Margin="0,20,0,0"
+                   BackgroundColor="{StaticResource MainControlColor}">
+                <StackLayout>
+                    <Label Text="Details: "
+                           FontSize="24"/>
+
+                    <Label Text="{Binding Cloudiness, StringFormat='Cloudiness: {0}'}"
+                           Style="{StaticResource DetailsLabelStyle}"/>
+
+                     <Label Text="{Binding Pressure, StringFormat='Pressure: {0} hpa'}"
+                            Style="{StaticResource DetailsLabelStyle}"/>
+
+                     <Label Text="{Binding Humidity, StringFormat='Humidity: {0} %'}"
+                            Style="{StaticResource DetailsLabelStyle}"/>
+
+                     <Label Text="{Binding Sunrise, StringFormat='Sunrise: {0}'}"
+                            Style="{StaticResource DetailsLabelStyle}"/>
+
+                     <Label Text="{Binding Sunset, StringFormat='Sunset: {0}'}"
+                            Style="{StaticResource DetailsLabelStyle}"/>
+
+                     <Label Text="{Binding Wind, Converter={StaticResource DegreesToDirectionConverter}, StringFormat='Wind: {0}'}"
+                            Style="{StaticResource DetailsLabelStyle}"/>
+                </StackLayout>
+            </Frame>
+
+            <Button Text="Update"
+                    HeightRequest="48"
+                    BackgroundColor="{StaticResource MainControlColor}"
+                    TextColor="White"
+                    VerticalOptions="EndAndExpand"
+                    Command="{Binding UpdateCommand}"/>
+        </StackLayout>
+</base:BasePage>
